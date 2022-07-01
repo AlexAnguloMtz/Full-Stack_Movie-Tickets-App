@@ -1,0 +1,7 @@
+.page__container {
+    margin: 0 auto;
+    width: min(90%, 500px);
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
