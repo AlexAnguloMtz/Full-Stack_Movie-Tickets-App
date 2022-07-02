@@ -1,9 +1,11 @@
+import { SimpleDate } from "./SimpleDate";
+
 const separator: string = '-';
 const renderedSeparator: string = '/';
 
 export class DateFormatter {
 
-    static fromDropdownValueToDate(dateDropdownValue: string): Date {
+    public static fromDropdownValueToDate(dateDropdownValue: string): Date {
         const yearMonthAndDay: string[] = dateDropdownValue.split(separator);
         const year: number = Number(yearMonthAndDay[0]);
         const month: number = Number(yearMonthAndDay[1]);
@@ -12,36 +14,44 @@ export class DateFormatter {
         return new Date(year, monthStartingFromZero, day);
     }
 
-    static formatForUrl(date: Date): string {
+    public static formatForUrl(date: Date): string {
         const year: string = DateFormatter._exctractYear(date);
         const month: string = DateFormatter._extractMonth(date); 
         const day: string = DateFormatter._extractDay(date);
         return `${year}${separator}${month}${separator}${day}`;
     } 
   
-    static fromDateToDropdownValue(date: Date): string {
+    public static fromDateToDropdownValue(date: Date): string {
         return DateFormatter.formatForUrl(date);
     }
 
-    static formatRenderedDate(date: Date): string {
+    public static formatRenderedDate(date: Date): string {
+        const base: string = DateFormatter._baseRenderedString(date);
+        if(!SimpleDate.isToday(date)) {
+           return base;
+        }
+        return `${base} (Today)`;
+    }
+
+    private static _baseRenderedString(date: Date): string {
         const day: string = DateFormatter._extractDay(date);
         const monthName: string = DateFormatter._monthName(date);
         const year: string = DateFormatter._exctractYear(date);
         return `${monthName}${renderedSeparator}${day}${renderedSeparator}${year}`;
     }
 
-    static _padWithZero(day: number): string {
-        if(DateFormatter._hasOneDigit(day)) {
-            return `0${day}`;
+    private static _padWithZero(dateOrMonth: number): string {
+        if(DateFormatter._hasOneDigit(dateOrMonth)) {
+            return `0${dateOrMonth}`;
         }
-        return String(day);
+        return String(dateOrMonth);
     }
 
-    static _extractDay(date: Date): string {
+    private static _extractDay(date: Date): string {
         const day: number = date.getDate();
         return DateFormatter._padWithZero(day);
     }
-    static _extractMonth(date: Date): string {
+    private static _extractMonth(date: Date): string {
         const previousMonth: number = date.getMonth();
         const realMonth: number = previousMonth + 1;
         return DateFormatter._padWithZero(realMonth);
@@ -51,11 +61,11 @@ export class DateFormatter {
         return String(date.getFullYear())
     }
 
-    static _hasOneDigit(day: number): boolean {
-        return day > -10 && day < 10;
+    private static _hasOneDigit(dayOrMonth: number): boolean {
+        return dayOrMonth > -10 && dayOrMonth < 10;
     }
 
-    static _monthName(date: Date): string {
+    private static _monthName(date: Date): string {
         const month = DateFormatter._extractMonth(date);
         let monthName: string = '';
         switch(month) {

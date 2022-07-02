@@ -15,11 +15,14 @@ public class MovieDto {
     private final Integer durationInMinutes;
     private final Set<ShowtimeDto> showtimes;
 
-    public MovieDto(Integer id, String title, Integer durationInMinutes, Set<ShowtimeDto> showtimes) {
+    private final String poster;
+
+    public MovieDto(Integer id, String title, Integer durationInMinutes, Set<ShowtimeDto> showtimes, String poster) {
         this.id = id;
         this.title = title;
         this.durationInMinutes = durationInMinutes;
         this.showtimes = showtimes;
+        this.poster = poster;
     }
 
     public List<String> getShowTimes() {

@@ -28,16 +28,21 @@ public class Movie extends AbstractEntity {
     @JsonManagedReference
     private final Set<Showtime> showtimes;
 
+    @Column(name = "poster_URL")
+    private String poster;
+
     public Movie(Integer id,
                  String title,
                  Integer durationInMinutes,
-                 boolean onExhibition,
-                 Set<Showtime> showtimes) {
+                 Boolean onExhibition,
+                 Set<Showtime> showtimes,
+                 String poster) {
         super(id);
         this.title = title;
         this.durationInMinutes = durationInMinutes;
         this.onExhibition = onExhibition;
         this.showtimes = showtimes;
+        this.poster = poster;
     }
 
     public static Movie copyWithShowtimes(Movie movie, Set<Showtime> newShowtimes) {
@@ -45,7 +50,7 @@ public class Movie extends AbstractEntity {
         String title = movie.getTitle();
         Integer durationInMinutes = movie.getDurationInMinutes();
         boolean onExhibition = movie.isOnExhibition();
-        return new Movie(id, title, durationInMinutes, onExhibition, newShowtimes);
+        return new Movie(id, title, durationInMinutes, onExhibition, newShowtimes, movie.getPoster());
     }
 
 }

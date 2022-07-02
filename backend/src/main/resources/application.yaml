@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/movies
+    password: '27111995'
+  sql:
+    init:
+      mode: always
+  jpa:
+    generate-ddl: 'false'
+    hibernate:
+      ddl-auto: none
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
+aws:
+  region:
+  bucket:
+  access_key_id:
+  secret_access_key:

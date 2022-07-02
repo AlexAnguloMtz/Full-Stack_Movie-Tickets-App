@@ -11,12 +11,12 @@ export class MovieService {
         this._fetchService = new FetchService();
     }
 
-    getMoviesForDate(date: Date): Promise<Movie[]> {
+    public getMoviesForDate(date: Date): Promise<Movie[]> {
         const urlForDate: string = this._assembleUrlForDate(date);
         return this._fetchService.get(urlForDate);
     }
 
-    _assembleUrlForDate(date: Date): string {
+    private _assembleUrlForDate(date: Date): string {
         const baseUrl: string = UrlService.baseUrl(); 
         const restOfUrl: string = DateFormatter.formatForUrl(date);
         return UrlService.assembleUrl(baseUrl, restOfUrl);

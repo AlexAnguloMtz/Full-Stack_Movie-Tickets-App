@@ -4,16 +4,18 @@ import { Movie } from '../../common/types/Movie';
 import { MovieService } from '../../services/MovieService';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import { DatePicker } from '../../components/DatePicker/DatePicker';
+import { SimpleDate } from '../../common/utility/SimpleDate';
 
 const movieService: MovieService = new MovieService();
 
-const today = new Date();
+const today = SimpleDate.today();
 
 const renderMovie = (movie: Movie): ReactElement => {
     return <MovieCard key={movie.id}
                       title={movie.title}
                       durationInMinutes={movie.durationInMinutes}                    
-                      showTimes={movie.showTimes}/>;
+                      showTimes={movie.showTimes}
+                      poster={movie.poster}/>;
 }
 
 export const MovieCardsContainer: React.FC = () => {
@@ -28,11 +30,11 @@ export const MovieCardsContainer: React.FC = () => {
     }
 
     return (
-        <div className='movie-cards__container'>
+        <section className='movie-cards__container'>
             <DatePicker initialDate={today}
                         onDateChange={loadMovies}/>
             {movies.map(renderMovie)}
-        </div>
+        </section>
     );
     
 }

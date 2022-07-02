@@ -1,4 +1,4 @@
-import './NavBar.css'
+import './NavBar.scss'
 
 export const NavBar = () => (
     <nav className="nav">

@@ -1,8 +1,8 @@
 import { FormControl, Select, MenuItem, SelectChangeEvent } from "@mui/material";
 import { ReactElement, useState } from "react";
 import { DateFormatter } from "../../common/utility/DateFormatter";
+import { FunctionalProgramming } from "../../common/utility/FunctionalProgramming";
 import { DateLoader } from "./DateLoader";
-import './DateDropdown.css'
 
 export const DateDropdown = ({initialDate, numberOfDatesToRender: numberOfDates, onDateChange}: 
                              {initialDate: Date, 
@@ -43,11 +43,10 @@ export const DateDropdown = ({initialDate, numberOfDatesToRender: numberOfDates,
 }
 
 const renderDate = (date: Date): ReactElement => {
-    const formattedDate: string = DateFormatter.fromDateToDropdownValue(date);
-    return  <MenuItem key={formattedDate}
-                      value={formattedDate}>
+    const dateDropdownValue: string = DateFormatter.fromDateToDropdownValue(date);
+    return  <MenuItem 
+                      key={dateDropdownValue}
+                      value={dateDropdownValue}>
                       {DateFormatter.formatRenderedDate(date)}   
             </MenuItem>;
 }
-
-

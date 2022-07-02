@@ -1,19 +1,19 @@
 import { DateDropdown } from "../DateDropdown/DateDropdown";
-import './DatePicker.css'
+import './DatePicker.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
 export const DatePicker = ({initialDate, onDateChange}: {initialDate: Date, onDateChange: Function}) => (
-    <div className="datePicker">
+    <section className="datePicker">
         <h1 className="datePicker__heading"> 
-            <FontAwesomeIcon className="calendarIcon" 
+            <FontAwesomeIcon className="datePicker__calendarIcon" 
                              icon={faCalendarDays} />
              Date
         </h1>
         <DateDropdown initialDate={initialDate}
                       numberOfDatesToRender={10}
                       onDateChange={onDateChange}/>
-    </div>
+    </section>
 );
 
 const today = (): Date => {

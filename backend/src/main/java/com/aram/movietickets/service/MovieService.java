@@ -19,7 +19,6 @@ import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 
 @Service
-@Slf4j
 public class MovieService {
 
     private final MovieRepository movieRepository;

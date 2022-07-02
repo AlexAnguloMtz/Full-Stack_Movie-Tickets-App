@@ -9,7 +9,7 @@ export class FunctionalProgramming {
      * @throws {RangeError} Will throw RangeError if argument is not a valid array length.
      * 
      */
-    static range(numberOfValues: number): number[] {
+    public static range(numberOfValues: number): number[] {
         return [...Array(numberOfValues).keys()];
     }
     

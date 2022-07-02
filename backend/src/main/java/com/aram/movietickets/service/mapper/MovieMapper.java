@@ -26,7 +26,8 @@ public class MovieMapper {
         Integer id = movie.getId();
         String title = movie.getTitle();
         Integer durationInMinutes = movie.getDurationInMinutes();
-        return new MovieDto(id, title, durationInMinutes, exctractShowTimeDtos(movie));
+        String poster = movie.getPoster();
+        return new MovieDto(id, title, durationInMinutes, exctractShowTimeDtos(movie), poster);
     }
 
     private Set<ShowtimeDto> exctractShowTimeDtos(Movie movie) {

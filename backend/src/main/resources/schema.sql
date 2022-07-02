@@ -6,6 +6,7 @@ CREATE TABLE movie(
     title VARCHAR(60) NOT NULL,
     duration_in_minutes INT NOT NULL,
     on_exhibition TINYINT NOT NULL,
+    poster_URL VARCHAR(150),
     PRIMARY KEY(id)
 )  ENGINE=INNODB;
 
